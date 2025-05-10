@@ -33,6 +33,11 @@ function getFilePath (string $uri, string $method) : string {
     return ROUTES_DIR . '/' . normalizeUri($uri) . '_' . strtolower($method) . '.php';
 }
 
+function redirect(string $uri): void {
+    header("Location: $uri");
+    exit;
+}
+
 function dispatch(string $uri, string $method) : void {
     // normalize the URI
     $uri = normalizeUri($uri);

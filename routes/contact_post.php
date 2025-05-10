@@ -21,10 +21,11 @@ $inserted =  insertMessage(connectDb(), $name, $email, $message);
 
 if ($inserted) {
     $safeName = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
-    echo "Thank you, $safeName,  for your message. It was stored";
-    exit;
+    addFlashMessage('success', "Thank you, $safeName,  for your message. It was stored");
 }
 else {
-    serverError('Could not store the message, sorry');
+    addFlashMessage('error', 'Could not store the message, sorry');
 }
+
+redirect('/guestbook')
 ?>
