@@ -1,7 +1,13 @@
 <?php 
 // app initialization code to set all required constants and files
 declare(strict_types=1);
-error_reporting(0);
+
+require_once __DIR__ . '/error_handling.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+set_exception_handler('exceptionHandler');
+set_error_handler('errorHandler');
 
 // Create a constant reference to the includes folder for convenience
 const INCLUDES_DIR = __DIR__ . '/./includes';
