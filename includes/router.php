@@ -22,6 +22,12 @@ function badRequest(string $message) : void {
     exit;
 }
 
+function serverError(string $message = 'Server error'): void {
+    http_response_code(500);
+    echo $message;
+    exit;
+}
+
 //return full name of the php file requested
 function getFilePath (string $uri, string $method) : string {
     return ROUTES_DIR . '/' . normalizeUri($uri) . '_' . strtolower($method) . '.php';

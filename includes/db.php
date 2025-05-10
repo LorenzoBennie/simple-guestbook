@@ -21,4 +21,20 @@ function loadSchema(PDO $pdo, string $schemaFile): void {
     $pdo->exec($sql);
     echo "Schema successfully.\n";
 }
+
+// Insert data into the database
+// Use prepared statements
+function insertMessage(PDO $pdo, string $name, string $email, string $message): bool {
+    $sql = "INSERT INTO messages (name, email, message) VALUES 
+    (:name, :email, :message)";
+
+    $stmnt = $pdo->prepare($sql);
+    $stmnt->execute([
+        ':name' => $name,
+        ':email' => $email,
+        ':message' => $message
+    ]);
+
+    return $stmnt->rowCount() > 0;
+}
 ?>
