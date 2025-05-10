@@ -16,6 +16,12 @@ function notFound() : void {
     exit;
 }
 
+function badRequest(string $message) : void {
+    http_response_code(400);
+    echo $message;
+    exit;
+}
+
 //return full name of the php file requested
 function getFilePath (string $uri, string $method) : string {
     return ROUTES_DIR . '/' . normalizeUri($uri) . '_' . strtolower($method) . '.php';
